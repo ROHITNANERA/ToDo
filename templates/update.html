@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todo App</title>
+
+{% endblock %}
+
+{% block body %}
+<h1>This is Update Form</h1>
+    <div class="w3-third" align="center">
+        <form action="/update/{{task.id}}" method="post">
+            <input type="text" class="w3-border w3-border-green w3-input w3-half" name="content" id="content">
+            <input type="submit" class="w3-button w3-blue w3-round" name="Add Task">
+        </form>
+    </div>
+{% endblock %}

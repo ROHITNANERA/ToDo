@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todo App</title>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="w3-quarter">&nbsp;</div>
+    <div class="w3-half w3-margin-top w3-container w3-center">
+        <h1>TODO APP</h1>
+        {% if tasks|length < 1 %}
+        <h4 class="w3-text-red">There are no tasks. Create new one below!</h4>
+        <form action="/" class="w3-container" method="post">
+            <lable for="content" class="w3-large">Create Task </lable>
+            <input type="text" class="w3-border w3-border-black w3-round w3-input" name="content" id="content">
+            <input type="submit" class="w3-button w3-blue w3-round" value="Add Task">
+        </form>
+        {% else %}
+        <form action="/" class="w3-container" method="post">
+            <lable for="content" class="w3-large">Create Task </lable>
+            <input type="text" class="w3-border w3-border-black w3-round w3-input" name="content" id="content">
+            <input type="submit" class="w3-button w3-blue w3-round" value="Add Task">
+        </form>
+        <br>
+        <table class="w3-table w3-bordered w3-border w3-card">
+            <tr class="w3-text-green">
+                <th>Task</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created }}</td>
+                <td>
+                    <a href="/update/{{task.id}}"class="w3-button w3-amber">Update</a>
+                    <a href="/delete/{{task.id}}" class="w3-button w3-red">Delete</a>&nbsp;&nbsp;
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}<br>
+    </div>
+{% endblock %}
